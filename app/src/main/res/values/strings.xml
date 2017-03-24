@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Designs Samples</string>
+    <string name="title_bottom_sheet">Bottom Sheet</string>
+    <string name="title_list_sample">List Sample</string>
     <string name="bottom_sheet_peek">Peeking</string>
     <string name="bottom_sheet_content">Content</string>
 
