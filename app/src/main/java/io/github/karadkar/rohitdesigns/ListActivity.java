@@ -20,10 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends BaseActivity {
     RecyclerView mRecyclerView;
     private int mLastAnimatedItemPosition = -1;
-    final static long ANIM_TIME = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +33,8 @@ public class ListActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(new MyAdapter(getApplicationContext()));
         setupWindowAnimations(getIntent().getStringExtra(Constants.KEY_TRANSITION));
     }
-    private void setupWindowAnimations(String animationType){
-        switch (animationType){
-            case Constants.ANIM_EXPLODE:
-                startEnterTransition(new Explode());
-                break;
-            case Constants.ANIM_FADE:
-                startEnterTransition(new Fade());
-                break;
-            case Constants.ANIM_DEFAULT:
-                startEnterTransition(new Slide());
-                break;
-        }
-    }
-    private void startEnterTransition(Transition transition){
-        transition.setDuration(ANIM_TIME);
-        getWindow().setEnterTransition(transition);
-    }
+
+
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         Context mContext;
         List<String> myList;

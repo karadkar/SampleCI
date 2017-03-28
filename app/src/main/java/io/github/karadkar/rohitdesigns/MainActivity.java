@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity implements ViewGroup.OnClickListener{
     Context mContext;
-    Button mBtnBottomSheet;
+    Switch mSelectSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements ViewGroup.OnClick
         findViewById(R.id.btn_anim_explode).setOnClickListener(this);
         findViewById(R.id.btn_anim_fade).setOnClickListener(this);
         findViewById(R.id.btn_anim_default).setOnClickListener(this);
+
+        mSelectSwitch = (Switch) findViewById(R.id.switch1);
     }
 
     @Override
@@ -44,8 +47,10 @@ public class MainActivity extends AppCompatActivity implements ViewGroup.OnClick
     }
 
     void startAnimActivity(String anim_name){
-        Intent listActIntent = new Intent(mContext,ListActivity.class);
+        Intent listActIntent = new Intent(mContext,
+                mSelectSwitch.isChecked()?ListActivity.class:DetailActivity.class);
         listActIntent.putExtra(Constants.KEY_TRANSITION,anim_name);
+        //TODO: Note that, Activity Options bundle needs to be passed for Transition animations
         startActivity(listActIntent,
                 ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }

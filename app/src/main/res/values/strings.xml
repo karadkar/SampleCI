@@ -4,5 +4,6 @@
     <string name="title_list_sample">List Sample</string>
     <string name="bottom_sheet_peek">Peeking</string>
     <string name="bottom_sheet_content">Content</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 </resources>

@@ -17,12 +17,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="@string/title_bottom_sheet"
-            android:name=".BottomSheetActivity"/>
+            android:name=".BottomSheetActivity"
+            android:label="@string/title_bottom_sheet"/>
         <activity
-            android:label="@string/title_list_sample"
-            android:name=".ListActivity"/>
-
+            android:name=".ListActivity"
+            android:label="@string/title_list_sample"/>
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
