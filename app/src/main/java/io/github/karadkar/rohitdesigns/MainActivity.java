@@ -7,12 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements ViewGroup.OnClickListener{
     Context mContext;
     Switch mSelectSwitch;
+    SeekBar mSeekBar;
+    TextView mTxtAnimSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +25,29 @@ public class MainActivity extends AppCompatActivity implements ViewGroup.OnClick
         findViewById(R.id.btn_bottom_sheet).setOnClickListener(this);
         findViewById(R.id.btn_anim_explode).setOnClickListener(this);
         findViewById(R.id.btn_anim_fade).setOnClickListener(this);
-        findViewById(R.id.btn_anim_default).setOnClickListener(this);
+        findViewById(R.id.btn_anim_slide).setOnClickListener(this);
+        mTxtAnimSpeed = (TextView) findViewById(R.id.txtAnimSpeed);
 
+        mSeekBar = (SeekBar) findViewById(R.id.seekBar);
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                long animSpeed = progress * 10;
+                mTxtAnimSpeed.setText(String.valueOf(animSpeed+" Milliseconds"));
+                Constants.TRANSITION_SPEED = animSpeed;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        mSeekBar.setProgress(30);
         mSelectSwitch = (Switch) findViewById(R.id.switch1);
     }
 
@@ -41,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ViewGroup.OnClick
                 startAnimActivity(Constants.ANIM_FADE);
                 break;
             default:
-                startAnimActivity(Constants.ANIM_DEFAULT);
+                startAnimActivity(Constants.ANIM_SLIDE);
                 break;
         }
     }

@@ -65,6 +65,7 @@ public class ListActivity extends BaseActivity {
         void animateView(View view, int position){
             if (position > mLastAnimatedItemPosition){
                 Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.list_item_fade_in);
+                animation.setDuration(Constants.TRANSITION_SPEED);
                 view.startAnimation(animation);
                 mLastAnimatedItemPosition = position;
             }

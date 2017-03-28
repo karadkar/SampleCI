@@ -19,14 +19,14 @@ public class BaseActivity extends AppCompatActivity {
             case Constants.ANIM_FADE:
                 startEnterTransition(new Fade());
                 break;
-            case Constants.ANIM_DEFAULT:
+            case Constants.ANIM_SLIDE:
                 startEnterTransition(new Slide());
                 break;
         }
     }
 
     protected void startEnterTransition(Transition transition){
-        transition.setDuration(Constants.ANIM_TIME);
+        transition.setDuration(Constants.TRANSITION_SPEED);
         getWindow().setEnterTransition(transition);
     }
 }
