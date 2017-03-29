@@ -1,4 +1,4 @@
-package io.github.karadkar.rohitdesigns;
+package io.github.karadkar.rohitdesigns.features;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import io.github.karadkar.rohitdesigns.R;
 
 public class BottomSheetActivity extends AppCompatActivity {
     Context mContext;

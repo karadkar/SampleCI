@@ -1,4 +1,4 @@
-package io.github.karadkar.rohitdesigns;
+package io.github.karadkar.rohitdesigns.features;
 
 import android.app.ActivityOptions;
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import io.github.karadkar.rohitdesigns.Constants;
+import io.github.karadkar.rohitdesigns.R;
 
 public class MainActivity extends AppCompatActivity implements ViewGroup.OnClickListener{
     Context mContext;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements ViewGroup.OnClick
         findViewById(R.id.btn_anim_explode).setOnClickListener(this);
         findViewById(R.id.btn_anim_fade).setOnClickListener(this);
         findViewById(R.id.btn_anim_slide).setOnClickListener(this);
+        findViewById(R.id.btn_circular_reveal).setOnClickListener(this);
+
         mTxtAnimSpeed = (TextView) findViewById(R.id.txtAnimSpeed);
 
         mSeekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -49,8 +54,12 @@ public class MainActivity extends AppCompatActivity implements ViewGroup.OnClick
         });
         mSeekBar.setProgress(30);
         mSelectSwitch = (Switch) findViewById(R.id.switch1);
-    }
 
+        findViewById(R.id.btn_circular_reveal).setOnClickListener(this);
+    }
+    void onClickCircularReveal(){
+        startActivity(new Intent(getApplicationContext(),CircularRevealActivity.class));
+    }
     @Override
     public void onClick(View v) {
 
@@ -63,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements ViewGroup.OnClick
                 break;
             case R.id.btn_anim_fade:
                 startAnimActivity(Constants.ANIM_FADE);
+                break;
+            case R.id.btn_circular_reveal:
+                onClickCircularReveal();
                 break;
             default:
                 startAnimActivity(Constants.ANIM_SLIDE);

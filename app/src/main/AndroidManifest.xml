@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".features.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,15 +17,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BottomSheetActivity"
+            android:name=".features.BottomSheetActivity"
             android:label="@string/title_bottom_sheet"/>
         <activity
-            android:name=".ListActivity"
+            android:name=".features.ListActivity"
             android:label="@string/title_list_sample"/>
         <activity
-            android:name=".DetailActivity"
+            android:name=".features.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".features.CircularRevealActivity">
         </activity>
     </application>
 

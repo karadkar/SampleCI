@@ -6,16 +6,11 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
-
-        // retrolambda
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
     }
 }
-
 allprojects {
     repositories {
         jcenter()
-        mavenCentral()
     }
 }
 

@@ -1,4 +1,4 @@
-package io.github.karadkar.rohitdesigns;
+package io.github.karadkar.rohitdesigns.features;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -6,6 +6,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import io.github.karadkar.rohitdesigns.BaseActivity;
+import io.github.karadkar.rohitdesigns.Constants;
+import io.github.karadkar.rohitdesigns.R;
 
 public class DetailActivity extends BaseActivity {
 

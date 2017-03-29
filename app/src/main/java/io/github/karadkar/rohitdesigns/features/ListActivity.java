@@ -1,4 +1,4 @@
-package io.github.karadkar.rohitdesigns;
+package io.github.karadkar.rohitdesigns.features;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +19,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import io.github.karadkar.rohitdesigns.BaseActivity;
+import io.github.karadkar.rohitdesigns.Constants;
+import io.github.karadkar.rohitdesigns.R;
 
 public class ListActivity extends BaseActivity {
     RecyclerView mRecyclerView;
