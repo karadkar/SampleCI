@@ -1,6 +1,8 @@
 package io.github.karadkar.rohitdesigns.features;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,10 +36,19 @@ public class ListActivity extends BaseActivity {
         setContentView(R.layout.activity_list);
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_sample);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-        mRecyclerView.setAdapter(new MyAdapter(getApplicationContext()));
         setupWindowAnimations(getIntent().getStringExtra(Constants.KEY_TRANSITION));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRecyclerView.setAdapter(new MyAdapter(getApplicationContext()));
+            }
+        },400);
+    }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         Context mContext;
@@ -68,7 +79,7 @@ public class ListActivity extends BaseActivity {
 
         void animateView(View view, int position){
             if (position > mLastAnimatedItemPosition){
-                Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.list_item_fade_in);
+                Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.bottom_slide_in);
                 animation.setDuration(Constants.TRANSITION_SPEED);
                 view.startAnimation(animation);
                 mLastAnimatedItemPosition = position;

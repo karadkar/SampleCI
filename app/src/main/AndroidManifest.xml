@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".features.CircularRevealActivity">
         </activity>
+        <activity android:name=".features.sq.SQLauncherActivity">
+        </activity>
     </application>
 
 </manifest>
