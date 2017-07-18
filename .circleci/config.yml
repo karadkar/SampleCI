@@ -21,7 +21,7 @@ jobs:
           name: Run Tests
           command: ./gradlew clean assembleDebug
       - store_artifacts:
-          path: app/build/reports
-          destination: reports
+          path: app/build/outputs/apk
+          destination: buildApk
       - store_test_results:
           path: app/build/test-results
