@@ -6,7 +6,6 @@ jobs:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
-      APK_FOLDER: buildApk
     steps:
       - checkout
       - restore_cache:
@@ -21,11 +20,12 @@ jobs:
       - run:
           name: Build Debug apk
           command: ./gradlew clean assembleDebug
-
+          name: Upload apk to Github rlease
+          command: ./autogitrelease.sh
       - store_artifacts:
 #      pick artifact from
           path: app/build/outputs/apk
-          destination: $APK_FOLDER
+          destination: apkFolder
 #      optional extra path
 #          destination: buildApk
       - store_test_results:

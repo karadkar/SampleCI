@@ -29,3 +29,7 @@ if [ -z "$NEEDS_TAG" ]; then
 else
     echo "Already a tag on this commit"
 fi
+
+# Push release to Github
+tagname=`git describe --abbrev=0 --tags`
+./ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME $tagname app/build/outputs/apk/
