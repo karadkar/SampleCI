@@ -6,8 +6,6 @@ jobs:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
-#      GIT_TAG: `git describe --abbrev=0 --tags`
-      APK_LOCATION: "app/build/outputs/apk/"
     steps:
       - checkout
       - restore_cache:
@@ -22,16 +20,12 @@ jobs:
       - run:
           name: Build Debug apk
           command: ./gradlew clean assembleDebug
-          name: Upload Artifacts to Github Release
-          command: ./ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME $CIRCLE_TAG-$CIRCLE_SHA1 $APK_LOCATION || true
-          name: Check latest tag
-          command: echo `git describe --abbrev=0 --tags`
-
 
       - store_artifacts:
 #      pick artifact from
           path: app/build/outputs/apk
+          destination: buildApk
 #      optional extra path
-          destination: apk
+#          destination: buildApk
       - store_test_results:
           path: app/build/test-results
