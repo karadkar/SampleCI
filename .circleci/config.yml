@@ -20,13 +20,14 @@ jobs:
       - run:
           name: Build Debug apk
           command: ./gradlew clean assembleDebug
-          name: Upload apk to Github rlease
-          command: ./autogitrelease.sh
+      # upload apk to github
+      - deploy:
+          command: ./apkrelease.sh
       - store_artifacts:
 #      pick artifact from
           path: app/build/outputs/apk
           destination: apkFolder
 #      optional extra path
 #          destination: buildApk
-      - store_test_results:
-          path: app/build/test-results
+#      - store_test_results:
+#          path: app/build/test-results
