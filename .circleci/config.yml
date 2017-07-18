@@ -23,13 +23,15 @@ jobs:
           name: Build Debug apk
           command: ./gradlew clean assembleDebug
           name: Upload Artifacts to Github Release
-          command: ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME $CIRCLE_TAG-$CIRCLE_SHA1 $APK_LOCATION || true
+          command: ./ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME $CIRCLE_TAG-$CIRCLE_SHA1 $APK_LOCATION || true
+          name: Check latest tag
+          command: echo `git describe --abbrev=0 --tags`
 
 
       - store_artifacts:
 #      pick artifact from
           path: app/build/outputs/apk
 #      optional extra path
-          destination: $APK_DIR
+          destination: apk
       - store_test_results:
           path: app/build/test-results
