@@ -18,10 +18,15 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Run Tests
+          name: Build Debug apk
           command: ./gradlew clean assembleDebug
+          name: Build Release apk
+          command: ./gradlew assemble
+
       - store_artifacts:
+#      pick artifact from
           path: app/build/outputs/apk
-          destination: buildApk
+#      optional extra path
+#          destination: buildApk
       - store_test_results:
           path: app/build/test-results
