@@ -6,7 +6,7 @@ jobs:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
-      APK_DIR: "apk_dir"
+      APK_DIR: apk_dir
       GIT_TAG: `git describe --abbrev=0 --tags`
       APK_LOCATION: "app/build/outputs/apk/"
     steps:
