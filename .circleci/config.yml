@@ -6,6 +6,7 @@ jobs:
       - image: circleci/android:api-25-alpha
     environment:
       JVM_OPTS: -Xmx3200m
+      APK_FOLDER: buildApk
     steps:
       - checkout
       - restore_cache:
@@ -24,7 +25,7 @@ jobs:
       - store_artifacts:
 #      pick artifact from
           path: app/build/outputs/apk
-          destination: buildApk
+          destination: $APK_FOLDER
 #      optional extra path
 #          destination: buildApk
       - store_test_results:
