@@ -10,7 +10,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  ".circleci/config.yml" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "setup_emulator.sh" }}
 
       - run:
           name: update sdk & accept licenses
@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: Setup emulator
-          command: sdkmanager "system-images;android-25;google_apis;x86" && echo "no" | avdmanager create avd -n avd_25_x86 -k "system-images;android-25;google_apis;x86"
+          command: ./setup_emulator.sh
 
       - run:
           name: Download Dependencies
@@ -26,14 +26,14 @@ jobs:
 
       - run:
           name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd avd_25_x86 -noaudio -no-boot-anim -no-window -accel on
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-x86 -avd avd_25_x86 -noaudio -no-boot-anim -no-window -accel on
           background: true
 
       - save_cache:
           paths:
             - ~/.gradle
             - ~/.android/
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  ".circleci/config.yml" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "setup_emulator.sh" }}
 
       - run:
           name: Run Esspresso Tests
