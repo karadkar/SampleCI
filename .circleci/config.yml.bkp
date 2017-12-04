@@ -10,21 +10,30 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "setup_emulator.sh" }}
 
       - run:
-          name: Launch emulator
-          command: emulator -avd api-26-alpha -noaudio -no-boot-anim -no-window -accel on
-          background: true
+          name: update sdk & accept licenses
+          command: sdkmanager --update && echo "yes" | sdkmanager --licenses
+
+      - run:
+          name: Setup emulator
+          command: ./setup_emulator.sh
 
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
 
+      - run:
+          name: Launch emulator
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-x86 -avd avd_25_x86 -noaudio -no-boot-anim -no-window -accel on
+          background: true
+
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+            - ~/.android/
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}-{{ checksum  "setup_emulator.sh" }}
 
       - run:
           name: Run Esspresso Tests
