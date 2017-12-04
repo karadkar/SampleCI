@@ -14,21 +14,21 @@ jobs:
 
       - run:
           name: Launch emulator
-          command: ls ~/.android/avd/ && emulator -avd circleci-android26 -noaudio -no-boot-anim -no-window -accel on
+          command: ls $HOME/.android/avd; emulator -avd circleci-android26 -noaudio -no-boot-anim -no-window -accel on
           background: true
 
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-
-      - run:
-          name: Run Esspresso Tests
-          command: ./gradlew connectedAndroidTest
+#      - run:
+#          name: Download Dependencies
+#          command: ./gradlew androidDependencies
+#
+#      - save_cache:
+#          paths:
+#            - ~/.gradle
+#          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+#
+#      - run:
+#          name: Run Esspresso Tests
+#          command: ./gradlew connectedAndroidTest
 
 #      - run:
 #          name: Build Debug apk
