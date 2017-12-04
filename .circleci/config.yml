@@ -13,12 +13,16 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
+          name: update sdk & accept licenses
+          command: sdkmanager --update && echo "yes" | sdkmanager --licenses
 
       - run:
           name: Setup emulator
           command: sdkmanager "system-images;android-25;google_apis;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-25;google_apis;armeabi-v7a"
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
 
       - save_cache:
           paths:
