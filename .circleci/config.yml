@@ -14,7 +14,7 @@ jobs:
 
       - run:
           name: Launch emulator
-          command: emulator -avd api-26-alpha -noaudio -no-boot-anim -no-window -accel on
+          command: ls ~/.android/avd/ && emulator -avd circleci-android26 -noaudio -no-boot-anim -no-window -accel on
           background: true
 
       - run:
