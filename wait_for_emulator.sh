@@ -23,6 +23,6 @@ until [[ "$bootanim" =~ "stopped" ]]; do
 done
 
 echo "Taking ScreenShot"
-adb exec-out screencap -p > code/app/build/outputs/apk/screenshot.png
+adb exec-out screencap -p > app/screenshot.png
 
 echo "Emulator is ready"
