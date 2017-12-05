@@ -14,16 +14,16 @@ jobs:
 
       - run:
           name: Setup emulator
-          command: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd --force -n test -k "system-images;android-22;default;armeabi-v7a"
+          command: sdkmanager "system-images;android-23;default;armeabi-v7a" && echo "no" | avdmanager create avd --force -n avd_23_arm -k "system-images;android-23;default;armeabi-v7a"
 
       - run:
           name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd avd_23_arm -noaudio -no-boot-anim -no-window -accel on
           background: true
 
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: ./gradlew androidDependencies --stacktrace
 
       - save_cache:
           paths:
@@ -36,9 +36,12 @@ jobs:
           command: ./wait_for_emulator.sh
 
       - run:
-          name: Run Esspresso Tests
-          command: ./gradlew installDebug
+          name: Run Esspresso test
+          command: ./gradlew installDebug --stacktrace
 
+      - store_artifacts:
+          path: app/build/outputs/apk
+          destination: apk_output
 #      - run:
 #          name: Build Debug apk
 #          command: ./gradlew clean assembleDebug
@@ -48,5 +51,5 @@ jobs:
 #      pick artifact from
 #      optional extra path
 #          destination: buildApk
-#      - store_test_results:
-#          path: app/build/test-results
+#      - store_avd_25_arm_results:
+#          path: app/build/avd_25_arm-results
