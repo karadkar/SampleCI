@@ -14,11 +14,11 @@ jobs:
 
       - run:
           name: Setup emulator
-          command: sdkmanager "system-images;android-23;default;armeabi-v7a" && echo "no" | avdmanager create avd --force -n avd_23_arm -k "system-images;android-23;default;armeabi-v7a"
+          command: sdkmanager "system-images;android-22;default;armeabi-v7a" && echo "no" | avdmanager create avd --force -n avd_22_arm -k "system-images;android-22;default;armeabi-v7a"
 
       - run:
           name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd avd_23_arm -noaudio -no-boot-anim -no-window -accel on
+          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd avd_22_arm -noaudio -no-boot-anim -no-window -accel on
           background: true
 
       - run:
