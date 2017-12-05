@@ -33,6 +33,10 @@ jobs:
           key: "two"
 
       - run:
+          name: Wait for Emulator
+          command: ./wait_for_emulator.sh
+
+      - run:
           name: Run Esspresso Tests
           command: ./gradlew connectedAndroidTest
 
