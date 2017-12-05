@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Run Esspresso test
-          command: ./gradlew installDebug --stacktrace
+          command: ./gradlew assembleDebug installDebug --stacktrace
 
       - store_artifacts:
           path: app/build/outputs/apk
