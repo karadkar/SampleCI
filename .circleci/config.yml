@@ -10,7 +10,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       - run:
           name: Setup emulator
@@ -39,17 +39,6 @@ jobs:
           name: Run Esspresso Tests
           command: ./gradlew installDebug
 
-      - run:
-          name: Take screen shot
-          command: adb exec-out screencap -p > app/build/reports/screenshot.png
-
-      - store_artifacts:
-          path: app/build/reports
-          destination: report_output
-
-      - store_artifacts:
-          path: app/build
-          destination: build_output
 #      - run:
 #          name: Build Debug apk
 #          command: ./gradlew clean assembleDebug
